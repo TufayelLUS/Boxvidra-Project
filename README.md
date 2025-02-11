@@ -75,7 +75,27 @@ curl -s -o ~/x https://raw.githubusercontent.com/boxvidra/Boxvidra-Project/boxvi
 'Proot Version Is Not Available At The Moment'
 ```
 
-#
+
+# Remove Auto Kill Feature
+Enable developer option and then enable USB debugging, enable "USB Debugging (Security settings)", "disable permission monitoring" (if present) and restart the phone.<br>
+Now connect to adb using the command after going to developer option > wireless debugging and pairing with pin code
+```bash
+adb pair IP:port pin
+```
+Then run these commands in the connected terminal:
+```bash
+adb shell "/system/bin/device_config set_sync_disabled_for_tests persistent"
+adb shell "/system/bin/device_config put activity_manager max_phantom_processes 2147483647"
+adb shell settings put global settings_enable_monitor_phantom_procs false
+```
+This will disable phantom process killer making your session no longer crashed while using X11.<br><br>
+# Verify The Changes
+```bash
+adb shell "/system/bin/dumpsys activity settings | grep max_phantom_processes"
+adb shell "/system/bin/device_config get activity_manager max_phantom_processes"
+```
+
+
 
 ### Run Boxvidra Native :
 * `boxvidra-native` To Run Boxvidra Native
