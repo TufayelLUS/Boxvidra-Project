@@ -95,7 +95,21 @@ adb shell "/system/bin/dumpsys activity settings | grep max_phantom_processes"
 adb shell "/system/bin/device_config get activity_manager max_phantom_processes"
 ```
 
-
+# Installing Custom Font Such As Bengali
+Boxvidra doesn't come with other language fonts such as Bengali and you'll see square boxes instead when you access the internet. Download Kalpurush.ttf font (or any preferred font file) to solve this.<br>
+Once downloaded, create a folder using the command
+```bash
+mkdir ~/.local/share/fonts
+```
+Now, move the ttf file using the command (rename the file name as per your file name or file path)
+```bash
+mv kalpurush.ttf ~/.local/share/fonts/
+```
+Now, refresh the font cache using the command
+```bash
+fc-cache -f -v
+```
+And done! Your Bengali font should now be visible everywhere if everything is done correctly.
 
 ### Run Boxvidra Native :
 * `boxvidra-native` To Run Boxvidra Native
